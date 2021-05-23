@@ -1,0 +1,62 @@
+{% extends 'base.html'  %}
+
+{%block content%}
+
+<div class="content">
+    <div class="container">
+        <div class="row mt-4 pt-4">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb mt-4 ">
+                          <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Vagas Disponíveis</li>
+                          </ol>
+                 </nav>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+            {% for v in vagas %}
+            <div class="col-lg-4">
+                <div class="text-center card-box bg-light ">
+                    <div class="member-card pt-2 pb-2">
+                        <div class="">
+                            <h4 class="">Vaga para {{v.vaga}}</h4>
+                            <p class="m-0 "><b>Função:</b> {{v.funcao}}</p>
+                            <p class="m-0 "><b>Equipe:</b> {{v.equipe}}</p>
+                            <p class="m-0 "><b>Nível exigido:</b> {{v.nivel_habilidade}}</p>
+                        </div>
+                        <a href="#" class="btn  btn-info btn-sm mt-3" role="button">Entre em contato</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        <!-- end row -->
+            <!-- end col -->
+        </div>
+
+        <!-- end row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="text-right">
+                    <ul class="pagination pagination-split mt-0 float-right">
+                        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span> <span class="sr-only">Previous</span></a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span> <span class="sr-only">Next</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- container -->
+</div>
+<footer class="py-5 bg-dark fixed-bottom">
+            <div class="container"><p class="m-0 text-center text-white">Copyright © GGPlataform 2021</p></div>
+</footer>
+{%endblock%}
