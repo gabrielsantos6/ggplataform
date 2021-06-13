@@ -27,7 +27,7 @@ class Server(admin.ModelAdmin):
 
 @admin.register(Equipe)
 class Equipe(admin.ModelAdmin):
-    list_display = ('nome', 'descricao', 'numeroMembros', 'dono',)
+    list_display = ('nome', 'descricao', 'dono',)
 
 
 @admin.register(Funcao)

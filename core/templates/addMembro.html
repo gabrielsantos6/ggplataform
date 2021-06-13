@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<div class="container">
+    <div class="mt-4">
+        <h2>Adicionar membro</h2>
+    </div>
+    <div class="mt-4">
+        <p>Insira o codigo do jogador que deseja adicionar a sua equipe</p>
+    </div>
+    <div class="">
+        <form method="POST" class="post-form" >
+        {% csrf_token %}
+        <label for="idjogador">Código do jogador</label>
+        <input id="idjogador" type="text" class="form-control" name="membro">
+        <button type="submit" class="save btn btn-primary mt-4">Adicionar</button>
+    </form>
+    </div>
+
+</div>
+
+<footer class="py-5 bg-dark fixed-bottom">
+            <div class="container"><p class="m-0 text-center text-white">Copyright © GGPlataform 2021</p></div>
+ </footer>
+{%endblock%}

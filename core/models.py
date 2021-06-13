@@ -60,9 +60,8 @@ class Equipe(models.Model):
     nome = models.CharField('Nome', max_length=100)
     senha = models.CharField('Senha', max_length=25)
     descricao = models.CharField('Descrição', max_length=255)
-    numeroMembros = models.IntegerField('Numero de membros', blank=True)
     dono = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Dono')
-    membros = models.ManyToManyField(User)
+    membros = models.ManyToManyField(User, null=True)
 
     class Meta:
         verbose_name = 'Equipe'
@@ -124,7 +123,7 @@ class Vagas(models.Model):
     )
     vaga = models.CharField('Vaga', max_length=50, choices=VAGAS_CHOICES)
     funcao = models.ForeignKey(Funcao, on_delete=models.CASCADE, related_name="Funcoes")
-    equipe = models.OneToOneField("Equipe", on_delete=models.CASCADE)
+    equipe = models.ForeignKey("Equipe", on_delete=models.CASCADE)
     descricao = models.TextField("Descrição", blank=True)
     nivel_habilidade = models.CharField('Nivel de Habilidade', max_length=17, choices=NIVELHABILIDADE_CHOICES,blank=True)
 
@@ -146,6 +145,62 @@ class Campeonato(models.Model):
     class Meta:
         verbose_name = 'Campeonato'
         verbose_name_plural = 'Campeonatos'
+
+    def __str__(self):
+        return self.nome
+
+
+class Perfil(models.Model):
+    PATENTE_CHOICES = (
+        ("Prata 1", "Prata 1"),
+        ("Prata 2", "Prata 2"),
+        ("Prata 3", "Prata 3"),
+        ("Prata 4", "Prata 4"),
+        ("Prata de Elite", "Prata de Elite"),
+        ("Prata de Elite Mester", "Prata de Elite Mester"),
+        ("Ouro 1", "Ouro 1"),
+        ("Ouro 2", "Ouro 2"),
+        ("Ouro 3", "Ouro 3"),
+        ("Ouro Mestre", "Ouro Mestre"),
+        ("AK 1", "AK 1"),
+        ("AK 2", "AK1"),
+        ("AK Cruzada", "AK Cruzada"),
+        ("Xerife", "Xerife"),
+        ("Águia 1", "Águia 1"),
+        ("Águia 2", "Águia 2"),
+        ("Supremo", "Supremo"),
+        ("Global", "Global"),
+        ("Sem Patente", "Sem Patente"),
+        ("Expirado", "Expirado"),
+    )
+
+    NIVELHABILIDADE_CHOICES = (
+        ("Iniciante", "Iniciante"),
+        ("Amador", "Amador"),
+        ("Semi Profissional", "Semi Profissional"),
+        ("Profissional", "Profissional"),
+    )
+
+    FUNCAO_CHOICES = (
+        ("Capitão", "Capitão"),
+        ("AWP", "Awper"),
+        ("Entry fragger", "Entry fragger"),
+        ("Suporte", "Suporte"),
+        ("Lurker", "Lurker"),
+    )
+
+    nome = models.CharField('Nome', max_length=100)
+    dataNasc = models.DateField('Data de nascimento', blank=True, null=True)
+    situacao = models.CharField('Situação', max_length=50)
+    nickname = models.CharField('Nickname', max_length=25)
+    patente = models.CharField('Patente', max_length=25, choices=PATENTE_CHOICES)
+    nivelHabilidade = models.CharField('Nivel de Habilidade', max_length=17, choices=NIVELHABILIDADE_CHOICES)
+    steam = models.CharField('Steam Url', max_length=200)
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Perfil'
+        verbose_name_plural = 'Perfis'
 
     def __str__(self):
         return self.nome

@@ -52,5 +52,5 @@ class User(AbstractUser):
     is_dono = models.BooleanField(default=False)
     is_jogador = models.BooleanField(default=True)
     funcao_jogador = models.CharField('Funçao', max_length=20, default="", choices=FUNCAO_CHOICES)
-    equipe_jogador = models.OneToOneField('core.Equipe', on_delete=models.CASCADE, null=True)
+    equipe_jogador = models.ForeignKey('core.Equipe', on_delete=models.CASCADE, null=True)
 

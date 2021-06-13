@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>GG plataform index</title>
+  <title>GG plataform</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -30,7 +30,6 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="{% url 'index'%}">
                                 Home
-
                             </a>
                         </li>
                         <li class="nav-item active"><a class="nav-link" href="{% url 'jogadores'%}">Jogadores</a></li>
@@ -42,11 +41,11 @@
                       </ul>
                       <div class="btn-group">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Usuario
+                          {{user.nome}}
                         </button>
                         <div class="dropdown-menu mt-3">
                            <a class="dropdown-item" href="{% url 'player'%}">Ver Perfil</a>
-                          <a class="dropdown-item" href="#">Editar Perfil</a>
+                          <a class="dropdown-item" href="{% url 'editarPerfil' user.id %}">Editar Perfil</a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="{% url 'account_logout'%}">Sair</a>
                         </div>

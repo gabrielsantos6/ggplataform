@@ -19,9 +19,12 @@
                             <p class="m-0"><b>Data de Início:</b> {{c.data_inicio}}</p>
                             <p class="m-0"><b>Data de Término:</b> {{c.data_termino}}</p>
                         </div>
+                        {%if user.is_dono%}
+                        <a href="{%url 'inscreverEquipe' c.id%}" class="btn  btn-dark btn-sm mt-3" role="button">Inscrever equipe</a>
 
-                        <a href="#" class="btn  btn-dark btn-sm mt-3" role="button">Inscrever equipe</a>
-                        <a href="#" class="btn  btn-info btn-sm mt-3" role="button">Mais informações</a>
+                        {%endif%}
+                        <a href="{%url 'detailCampeonato' c.id %}" class="btn  btn-info btn-sm mt-3" role="button">Mais informações</a>
+
                     </div>
                 </div>
             </div>

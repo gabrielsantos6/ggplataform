@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+    <h1 class="mt-4">Criar Equipe</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-warning">
+                    <a href="{% url 'index' %}">Cancelar</a>
+                </button>
+            {% endbuttons %}
+    </form>
+</div>
+<footer class="py-5 bg-dark fixed-bottom">
+     <div class="container"><p class="m-0 text-center text-white">Copyright © GGPlataform 2021</p></div>
+ </footer>
+
+{% endblock %}

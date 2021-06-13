@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     # 3rd party
-    'bootstrap4',
+    "bootstrap4",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",

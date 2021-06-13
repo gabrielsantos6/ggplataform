@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+    <h1>Editar perfil</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+            {% buttons %}
+        <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-warning">
+                    <a href="{% url 'index' %}">Cancelar</a>
+                </button>
+        </div>
+            {% endbuttons %}
+    </form>
+</div>
+
+{% endblock %}
