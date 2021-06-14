@@ -52,12 +52,10 @@
                             <p class="m-0"><b>Nivel de Habilidade:</b> {{j.nivelHabilidade}}</p>
                             <p class="m-0"><b>Função: </b>{{j.funcao_jogador}}</p>
                             {% if j.equipe_jogador%}
-                            <p class="m-0"><b>Equipe: </b><a href="">{{j.equipe_jogador}}</a></p>
+                            <p class="m-0"><b>Equipe: </b> <a href="{%url 'detailEquipe' j.equipe_jogador_id%}">{{j.equipe_jogador}}</a></p>
                             {%else%}
                             <p class="m-0"><b>Equipe:</b> Nenhuma</p>
-
                             {%endif%}
-
                         </div>
                         <a href="{{j.steam}}" class="btn btn-dark btn-sm mt-3" role="button">Entre em contato</a><br>
                         <a href="{%url 'detailJogador' j.id%}" class="btn  btn-secondary btn-sm mt-1 " role="button">Ver perfil</a>

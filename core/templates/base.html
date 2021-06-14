@@ -23,7 +23,7 @@
   <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#!">GGPlataform</a>
+                <a class="navbar-brand" href="{% url 'index'%}">GGPlataform</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
@@ -41,7 +41,7 @@
                       </ul>
                       <div class="btn-group">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          {{user.nome}}
+                          {{user.nickname}}
                         </button>
                         <div class="dropdown-menu mt-3">
                            <a class="dropdown-item" href="{% url 'player'%}">Ver Perfil</a>

@@ -2,18 +2,21 @@
 
 {%block content%}
 <div class="container">
-    <div class="mt-4">
+    <div class="mt-4 mb-4 pt-4">
         <h2>Inscrever Equipe</h2>
     </div>
-    <div class="mt-4">
-        <p>Confirme sua inscrição no campeonato {{object.nome}}</p>
+    <div class="mt-4 pt-4">
+        <p>Confirme sua inscrição no campeonato <b>{{object.nome}}</b></p>
     </div>
     <div class="">
         <form method="POST" class="post-form" action="{%url 'inscreverEquipe' object.id%}" >
         {% csrf_token %}
        <input type="hidden" class="form-control" name="campeonato" value="{{object.id}}">
-        <button type="submit" class="save btn btn-primary mt-4">Confirmar</button>
-            <a href="{% url 'campeonatos' %}" class="btn  btn-warning ">Cancelar</a>
+            <div class="mt-4">
+                <button type="submit" class="save btn btn-primary mt-4">Confirmar</button>
+                <a href="{% url 'campeonatos' %}" class=" mt-4 btn  btn-warning ">Cancelar</a>
+            </div>
+
 
     </form>
     </div>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<div class="container">
+    <div class="mt-4">
+        <h2>Remover membro</h2>
+    </div>
+    <div class="mt-4">
+        <p>Tem certeza que deseja remover o membro {{membros.nickname}}</p>
+    </div>
+    <div class="">
+        <form method="POST" class="post-form" >
+        {% csrf_token %}
+            <input type="hidden" class="form-control" name="membro" value="{{membros.id}}">
+        <button type="submit" class="save btn btn-primary mt-4">Sim</button>
+            <a href="{% url 'equipes' %}" class=" mt-4 btn  btn-warning ">Cancelar</a>
+    </form>
+    </div>
+
+</div>
+
+<footer class="py-5 bg-dark fixed-bottom">
+            <div class="container"><p class="m-0 text-center text-white">Copyright © GGPlataform 2021</p></div>
+ </footer>
+{%endblock%}

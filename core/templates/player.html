@@ -73,10 +73,14 @@
                       <h6 class="d-flex align-items-center mb-3">Equipe</h6>
                       <hr>
                        <div class="row pl-3">
-                        <h6>{{user.equipe_jogador}}</h6>
+                         {% if user.equipe_jogador%}
+                          <h6>{{user.equipe_jogador}}</h6>
+                         {%else%}
+                          <h6>Você não possui nenhuma equipe</h6>
+                         {%endif%}
                       </div>
                       <div class="row pl-3 mt-2 justify-content-center">
-                        <button class="btn btn-secondary btn-sm">Ver Equipe</button>
+                         <a href="{%url 'detailEquipe' user.equipe_jogador_id%}" class="btn btn-secondary btn-sm" role="button">Ver Equipe</a>
                       </div>
                     </div>
                   </div>

@@ -76,7 +76,6 @@ class CriarEquipeView(CreateView):
     model = Equipe
     template_name = 'equipe_form.html'
     fields = ['nome', 'descricao', 'senha']
-    success_url = reverse_lazy('equipes')
 
     def form_valid(self, form):
         equipe = form.save(commit=False)
@@ -88,7 +87,9 @@ class CriarEquipeView(CreateView):
         User.objects.filter(id=self.request.user.id).update(is_dono=True)
         obj_member = Equipe.objects.get(id=equipe.id)
         obj_member.membros.add(self.request.user)
-        return super(CriarEquipeView, self).form_valid(form)
+        return HttpResponseRedirect(
+            reverse_lazy("detailEquipe", kwargs={"pk": obj_eqp.id})
+        )
 
 
 class EditarPerfilView(UpdateView):
@@ -114,7 +115,10 @@ class EditarEquipeView(UpdateView):
     model = Equipe
     template_name = 'equipe_form.html'
     fields = ['nome', 'descricao']
-    success_url = reverse_lazy('index')
+
+    def get_success_url(self):
+        id_equipe = self.kwargs['pk']
+        return reverse_lazy('detailEquipe', kwargs={'pk': id_equipe})
 
 
 class CriarVagaView(CreateView):
@@ -162,9 +166,28 @@ class AddMembroView(TemplateView, View):
             equipe_obj = Equipe.objects.get(id=equipe)
             equipe_obj.membros.add(membro_obj)
             User.objects.filter(id=membro).update(equipe_jogador=equipe_obj)
-            return render(request, 'addMembro.html')
+            return HttpResponseRedirect(
+                reverse_lazy("detailEquipe", kwargs={"pk": equipe_obj.id})
+            )
         else:
             return render(request, 'index.html')
+
+
+class DeleteMembroView(DeleteView):
+    model = Equipe
+    template_name = "deleteMembro.html"
+
+    def post(self, request, pk):
+        membro = request.POST["membro"]
+        equipe = request.user.equipe_jogador_id
+        membro_obj = User.objects.get(id=pk)
+        equipe_obj = Equipe.objects.get(id=equipe)
+        equipe_obj.membros.remove(membro_obj)
+        User.objects.filter(id=pk).update(equipe_jogador=None)
+
+        return HttpResponseRedirect(
+            reverse_lazy("detailEquipe", kwargs={"pk": equipe_obj.id})
+        )
 
 
 class InscreverEquipeCampeonatoView(DetailView, View):

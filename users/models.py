@@ -54,3 +54,4 @@ class User(AbstractUser):
     funcao_jogador = models.CharField('Funçao', max_length=20, default="", choices=FUNCAO_CHOICES)
     equipe_jogador = models.ForeignKey('core.Equipe', on_delete=models.CASCADE, null=True)
 
+

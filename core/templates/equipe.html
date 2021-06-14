@@ -29,6 +29,14 @@
                         <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user_headphones.png" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
                         <div class="content mt-3">
                             <h4 class="title mb-0">{{membros.nickname}}</h4>
+                            {% if user.is_dono and object.dono == user%}
+                            {%if membros.nickname == user.nickname%}
+                             Dono
+                            {%else%}
+                             <a href="{%url 'removerMembro' membros.id%}" class="btn btn-danger btn-sm mt-1" role="button">Remover</a>
+                            {%endif%}
+                            {%endif%}
+
                         </div>
                     </div>
                 </div><!--end col-->
@@ -39,7 +47,6 @@
     <div class="row">
         <div class="col text-center pt-4 mt-4">
             <a href="{%url 'addMembro'%}" class="btn  btn-dark " role="button">Adicionar Membro</a>
-            <a href="#" class="btn  btn-danger " role="button">Remover Membro</a>
             <a href="{%url 'criarVaga' %}" class="btn  btn-secondary " role="button">Anunciar Vaga</a>
             <a href="{%url 'editarEquipe' object.id%}" class="btn  btn-warning " role="button">Editar Equipe</a>
         </div>
