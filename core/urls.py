@@ -1,7 +1,7 @@
 from django.urls import path, re_path
 from .views import IndexView, JogadoresView, EquipesView, EventosView, CampeonatosView, PagelandingView, VagasView, \
     PlayerView, EquipeView, CriarEquipeView, EditarPerfilView, EquipeDetailview, CriarVagaView, JogadorDetailView, \
-    CampeonatoDetailView, AddMembroView, EditarEquipeView, InscreverEquipeCampeonatoView, DeleteMembroView
+    CampeonatoDetailView, AddMembroView, EditarEquipeView, InscreverEquipeCampeonatoView, DeleteMembroView, AwpPlayers
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('editarEquipe/<int:pk>/', EditarEquipeView.as_view(), name='editarEquipe'),
     path('inscreverEquipe/<int:pk>/', InscreverEquipeCampeonatoView.as_view(), name='inscreverEquipe'),
     path('RemoverMembro/<int:pk>/', DeleteMembroView.as_view(), name='removerMembro'),
+    path('Jogadores/Awps/', AwpPlayers.as_view(), name='awpPlayers'),
 
 ]

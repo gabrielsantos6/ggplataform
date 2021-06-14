@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, DetailView, View
-from .models import Equipe, Vagas, Campeonato, Perfil
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, DetailView, View, ListView
+from .models import Equipe, Vagas, Campeonato, Perfil, Evento
 from users.models import User
 from django.urls import reverse_lazy
 
@@ -19,49 +19,38 @@ class IndexView(TemplateView):
         return super(IndexView, self).dispatch(request, *args, **kwargs)
 
 
-class JogadoresView(TemplateView):
+class JogadoresView(ListView):
+    model = User
     template_name = 'jogadores.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(JogadoresView, self).get_context_data(**kwargs)
-        context['jogadores'] = User.objects.order_by('?').all()
-        return context
+    paginate_by = 9
 
 
-class CampeonatosView(TemplateView):
+class CampeonatosView(ListView):
+    model = Campeonato
     template_name = 'campeonatos.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(CampeonatosView, self).get_context_data(**kwargs)
-        context['campeonatos'] = Campeonato.objects.order_by('?').all()
-        return context
+    paginate_by = 9
 
 
-class EquipesView(TemplateView):
+class EquipesView(ListView):
+    model = Equipe
     template_name = 'equipes.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(EquipesView, self).get_context_data(**kwargs)
-        context['equipes'] = Equipe.objects.order_by('?').all()
-        return context
+    paginate_by = 9
 
 
-class EventosView(TemplateView):
+class EventosView(ListView):
+    model = Evento
     template_name = 'eventos.html'
+    paginate_by = 9
 
 
 class PagelandingView(TemplateView):
     template_name = 'pagelanding.html'
 
 
-class VagasView(TemplateView):
+class VagasView(ListView):
+    model = Vagas
     template_name = 'vagas.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(VagasView, self).get_context_data(**kwargs)
-        context['vagas'] = Vagas.objects.order_by('?').all()
-
-        return context
+    paginate_by = 9
 
 
 class PlayerView(TemplateView):
@@ -206,3 +195,11 @@ class InscreverEquipeCampeonatoView(DetailView, View):
             )
         else:
             return render(request, 'index.html')
+
+
+class AwpPlayers(ListView):
+    model = User
+    template_name = 'jogadores.html'
+
+    def get_queryset(self, **kwargs):
+        return User.objects.filter(funcao_jogador='AWP')
